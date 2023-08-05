@@ -1,0 +1,32 @@
+#+TITLE: pile
+
+[[https://img.shields.io/github/workflow/status/lepisma/pile/test.svg?style=flat-square]] [[https://img.shields.io/github/v/tag/lepisma/pile.svg?style=flat-square]]
+
+Source code for my [[https://lepisma.xyz/][web site]] setup. ~pile~ wraps around ~org-publish~ and adds a few
+functions to improve the experience of generating static htmls.
+
+The package lives on a /commit-on-need/ basis so might not be in good shape at any
+point in time. The basic item here is a ~pile-project~ which can be of the /wiki/
+type (focused on having updatable set of pages, like in a regular wiki) or a
+/blog/ type (a stream of posts, dated and tagged). These projects then define the
+kind of embellishments the pages get using a bunch of hooks and/or org level
+config using the ~org-export~ and ~org-publish~ infrastructure.
+
+Overall this setup is sometimes annoying and slow but works mostly okay for me.
+
+* Workflow Notes
+** Hooks
+There are two hooks that work with the ~pile-publish-~ functions. See
+~./pile-hook.el~ for example functions.
+
+1. ~pile-pre-publish-hook~. Functions here are added to
+   ~org-export-before-parsing-hook~ and run in the /to-be-published/ Org mode
+   buffer.
+2. ~pile-post-publish-hook~. These are added to ~org-publish-after-publishing-hook~.
+
+** Configuration
+The overall effect on my website is strongly tied to the following components:
+
+1. Org Export configuration [[https://github.com/lepisma/lepisma.github.io/blob/source/assets/export.setup][here]].
+2. The CSS theme for various HTML components on the page, kept [[https://github.com/lepisma/pile-theme][here]].
+3. Package configuration [[https://github.com/lepisma/rogue/blob/9eda54718029973e6b665cfcc98e50d1a9d2c424/packages.el#L206][here]].
